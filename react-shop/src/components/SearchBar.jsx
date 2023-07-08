@@ -1,9 +1,19 @@
+import styled from 'styled-components';
+
 function SearchBar() {
   return (
     <div>
-      <input type="text" placeholder="검색" />
+      <StyledInput type="text" placeholder="검색" />
     </div>
   );
 }
 
 export default SearchBar;
+
+const StyledInput = styled.input`
+  width: 210px;
+  height: 45px;
+  background-color: #d7d7d7;
+  border: none;
+  border-radius: 5px;
+`;
