@@ -13,7 +13,7 @@ export default SearchBar;
 const StyledInput = styled.input`
   width: 230px;
   height: 45px;
-  background-color: #d7d7d7;
+  background-color: ${({ theme }) => theme.lightColor.input};
   border: none;
   border-radius: 5px;
   margin-left: 20px;

@@ -1,40 +1,38 @@
-import { Link, Routes, Route } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import styled, { ThemeProvider } from 'styled-components';
+import theme from '../styles/theme';
 
-import Home from '../pages/Home';
-import Fashion from '../pages/Fashion';
-import Accessory from '../pages/Accessory';
-import Digital from '../pages/Digital';
 import SearchBar from './SearchBar';
-import Cart from '../pages/Cart';
 
 function NavigationBar() {
   return (
-    <NavBar>
-      <NavMenu>
-        <ShopLink style={{ textDecoration: 'none' }} to="/">
-          React Shop
-        </ShopLink>
-        <MenuLink style={{ textDecoration: 'none' }} to="/fashion">
-          패션
-        </MenuLink>
-        <MenuLink style={{ textDecoration: 'none' }} to="/accessory">
-          액세서리
-        </MenuLink>
-        <MenuLink style={{ textDecoration: 'none' }} to="/digital">
-          디지털
-        </MenuLink>
+    <ThemeProvider theme={theme}>
+      <NavBar>
+        <NavMenu>
+          <ShopLink style={{ textDecoration: 'none' }} to="/">
+            React Shop
+          </ShopLink>
+          <MenuLink style={{ textDecoration: 'none' }} to="/fashion">
+            패션
+          </MenuLink>
+          <MenuLink style={{ textDecoration: 'none' }} to="/accessory">
+            액세서리
+          </MenuLink>
+          <MenuLink style={{ textDecoration: 'none' }} to="/digital">
+            디지털
+          </MenuLink>
 
-        <SunImg src="/sun.png" alt="light" />
-        <SearchBar />
-        <CartWrapper>
-          <CartLink style={{ textDecoration: 'none' }} to="/cart">
-            <img src="/cart.png" alt="cart" />
-          </CartLink>
-          <CartCount>0</CartCount>
-        </CartWrapper>
-      </NavMenu>
-    </NavBar>
+          <SunImg src="/sun.png" alt="light" />
+          <SearchBar />
+          <CartWrapper>
+            <CartLink style={{ textDecoration: 'none' }} to="/cart">
+              <img src="/cart.png" alt="cart" />
+            </CartLink>
+            <CartCount>0</CartCount>
+          </CartWrapper>
+        </NavMenu>
+      </NavBar>
+    </ThemeProvider>
   );
 }
 
@@ -47,7 +45,7 @@ const NavBar = styled.div`
   top: 0;
   left: 0;
   z-index: 10;
-  background-color: skyblue;
+  background-color: ${({ theme }) => theme.lightColor.navBack};
 `;
 
 const NavMenu = styled.div`
@@ -57,7 +55,7 @@ const NavMenu = styled.div`
 `;
 
 const ShopLink = styled(Link)`
-  color: #404343;
+  color: ${({ theme }) => theme.lightColor.navText};
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
@@ -65,7 +63,7 @@ const ShopLink = styled(Link)`
 `;
 
 const MenuLink = styled(Link)`
-  color: #404343;
+  color: ${({ theme }) => theme.lightColor.navText};
   font-size: 15px;
   font-weight: 600;
   text-align: center;
@@ -73,7 +71,7 @@ const MenuLink = styled(Link)`
   margin-left: 25px;
 
   &:hover {
-    background-color: #d7d7d7;
+    background-color: ${({ theme }) => theme.lightColor.navHover};
     width: 70px;
     height: 35px;
     border-radius: 10px;
@@ -81,7 +79,7 @@ const MenuLink = styled(Link)`
 `;
 
 const SunImg = styled.img`
-  color: #404343;
+  color: ${({ theme }) => theme.lightColor.navText};
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -93,7 +91,7 @@ const CartWrapper = styled.div`
 `;
 
 const CartLink = styled(Link)`
-  color: #404343;
+  color: ${({ theme }) => theme.lightColor.navText};
   width: 24px;
   height: 24px;
   cursor: pointer;
@@ -108,7 +106,7 @@ const CartCount = styled.span`
   width: 22px;
   height: 20px;
   border-radius: 10px;
-  background-color: red;
+  background-color: #ef4444;
   color: white;
   font-size: 13px;
   font-weight: 600;
