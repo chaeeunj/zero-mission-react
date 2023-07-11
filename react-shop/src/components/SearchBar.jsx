@@ -11,9 +11,10 @@ function SearchBar() {
 export default SearchBar;
 
 const StyledInput = styled.input`
-  width: 210px;
+  width: 230px;
   height: 45px;
   background-color: #d7d7d7;
   border: none;
   border-radius: 5px;
+  margin-left: 20px;
 `;
