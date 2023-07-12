@@ -15,7 +15,6 @@ function Digital() {
         const response = await fetch('https://fakestoreapi.com/products');
         const jsonData = await response.json();
         setData(jsonData);
-        console.log(data);
       } catch (error) {
         console.log('Error fetching data:', error);
       }
@@ -23,6 +22,8 @@ function Digital() {
 
     fetchData();
   }, []);
+
+  const electronic = data.filter((item) => item.category === 'electronics');
 
   return (
     <ThemeProvider theme={theme}>
@@ -33,10 +34,13 @@ function Digital() {
         </MenuNav>
         <ProductWrapper>
           <Title>{pagemenu}</Title>
-          <Products>
-            {data.map(
-              (item) =>
-                item.category === 'electronics' && (
+          {Array.from(Array(Math.ceil(electronic.length / 4)), (e, i) => {
+            const start = i * 4;
+            const end = start + 4;
+            const items = electronic.slice(start, end);
+            return (
+              <Products key={i}>
+                {items.map((item) => (
                   <ProductLink
                     key={item.id}
                     style={{ textDecoration: 'none' }}
@@ -49,9 +53,10 @@ function Digital() {
                       <ItemPrice>${item.price}</ItemPrice>
                     </DescWrapper>
                   </ProductLink>
-                )
-            )}
-          </Products>
+                ))}
+              </Products>
+            );
+          })}
         </ProductWrapper>
       </Wrapper>
     </ThemeProvider>
@@ -63,6 +68,7 @@ export default Digital;
 const Wrapper = styled.div`
   position: relative;
   top: 85px;
+  width: 100vw;
   margin-left: 75px;
 `;
 
@@ -76,34 +82,33 @@ const StyledSpan = styled.span`
 `;
 
 const ProductWrapper = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  /* width: 100vw; */
   margin-top: 10px;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
+  text-align: center;
   color: ${({ theme }) => theme.lightColor.commonText};
 `;
 
 const Products = styled.div`
   position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 90px;
-  width: 1330px;
-  height: 1505px;
-  background-color: skyblue;
+  float: left;
+  margin-top: 20px;
+  /* width: 1330px; */
 `;
 
 const ProductLink = styled(Link)`
   width: 315px;
   height: 480px;
-  border: 1px solid ${({ theme }) => theme.lightColor.itemDescBack};
+  border: 1px solid ${({ theme }) => theme.lightColor.input};
   border-radius: 10px;
+  margin-right: 20px;
 `;
 
 const ImgWrapper = styled.div`
@@ -128,12 +133,13 @@ const DescWrapper = styled.div`
 const ItemTitle = styled.div`
   color: ${({ theme }) => theme.lightColor.commonText};
   font-size: 16px;
-  padding: 35px 35px 0 35px;
+  /* padding: 30px 35px 10px 30px; */
+  padding: 35px 30px 10px 30px;
 `;
 
 const ItemPrice = styled.div`
   color: ${({ theme }) => theme.lightColor.commonText};
   font-size: 16px;
   font-weight: 500;
-  padding: 20px 35px 0 35px;
+  padding: 10px 10px 10px 30px;
 `;

@@ -63,6 +63,7 @@ export default Accessory;
 const Wrapper = styled.div`
   position: relative;
   top: 85px;
+  width: 100vw;
   margin-left: 75px;
 `;
 
@@ -76,34 +77,33 @@ const StyledSpan = styled.span`
 `;
 
 const ProductWrapper = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  /* width: 100vw; */
   margin-top: 10px;
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
+  text-align: center;
   color: ${({ theme }) => theme.lightColor.commonText};
 `;
 
 const Products = styled.div`
   position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-top: 90px;
-  width: 1330px;
-  height: 1505px;
-  background-color: skyblue;
+  float: left;
+  margin-top: 20px;
+  /* width: 1330px; */
 `;
 
 const ProductLink = styled(Link)`
   width: 315px;
   height: 480px;
-  border: 1px solid ${({ theme }) => theme.lightColor.itemDescBack};
+  border: 1px solid ${({ theme }) => theme.lightColor.input};
   border-radius: 10px;
+  margin-right: 20px;
 `;
 
 const ImgWrapper = styled.div`
