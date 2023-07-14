@@ -4,7 +4,7 @@ import theme from '../styles/theme';
 import NavigationBar from '../components/NavigationBar';
 import PropTypes from 'prop-types';
 
-function Product(productid) {
+function Detail() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -54,11 +54,11 @@ function Product(productid) {
   );
 }
 
-Product.propTypes = {
-  productid: PropTypes.number.isRequired,
-};
+// Detail.propTypes = {
+//   productid: PropTypes.number.isRequired,
+// };
 
-export default Product;
+export default Detail;
 
 const Wrapper = styled.div`
   position: relative;
