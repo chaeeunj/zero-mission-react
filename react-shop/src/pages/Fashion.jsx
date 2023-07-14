@@ -66,9 +66,9 @@ function Fashion() {
                 {items.map((item) => (
                   <ProductLink
                     key={item.id}
-                    productId={item.id}
+                    id={item.id}
                     style={{ textDecoration: 'none' }}
-                    to="/product">
+                    to={`/product/${item.id}`}>
                     <ImgWrapper>
                       <ItemImg src={item.image}></ItemImg>
                     </ImgWrapper>

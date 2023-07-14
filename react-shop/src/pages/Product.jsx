@@ -3,11 +3,9 @@ import styled, { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
 import NavigationBar from '../components/NavigationBar';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
 
-function Product() {
+function Product(productid) {
   const [data, setData] = useState([]);
-  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,12 +26,27 @@ function Product() {
     <ThemeProvider theme={theme}>
       <NavigationBar />
       <Wrapper>
+        <MenuNav>
+          홈 <StyledSpan>&gt;</StyledSpan>
+        </MenuNav>
         {data.map(
           (item) =>
-            item.id === `${id}` && (
-              <MenuNav key={item.id} item={item.id}>
-                홈 <StyledSpan>&gt;</StyledSpan> {item.title}
-              </MenuNav>
+            item.id === { productid } && (
+              <>
+                <img
+                  key={item.id}
+                  id={item.id}
+                  src={item.image}
+                  alt="product"></img>
+                <div>
+                  <h1>{item.title}</h1>
+                  <div>{item.description}</div>
+                  <div>
+                    {item.rating.rate} / {item.rating.count} 참여
+                  </div>
+                  <div>${item.price}</div>
+                </div>
+              </>
             )
         )}
       </Wrapper>
@@ -42,7 +55,7 @@ function Product() {
 }
 
 Product.propTypes = {
-  productId: PropTypes.number.isRequired,
+  productid: PropTypes.number.isRequired,
 };
 
 export default Product;

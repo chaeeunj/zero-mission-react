@@ -39,9 +39,9 @@ function Accessory() {
                 item.category === 'jewelery' && (
                   <ProductLink
                     key={item.id}
-                    id={item.id}
+                    productid={item.id}
                     style={{ textDecoration: 'none' }}
-                    to="/product">
+                    to={`/product/${item.id}`}>
                     <ImgWrapper>
                       <ItemImg src={item.image}></ItemImg>
                     </ImgWrapper>

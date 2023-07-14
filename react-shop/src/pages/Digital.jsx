@@ -45,7 +45,7 @@ function Digital() {
                     key={item.id}
                     id={item.id}
                     style={{ textDecoration: 'none' }}
-                    to="/product">
+                    to={`/product/${item.id}`}>
                     <ImgWrapper>
                       <ItemImg src={item.image}></ItemImg>
                     </ImgWrapper>
