@@ -43,6 +43,7 @@ function Digital() {
                 {items.map((item) => (
                   <ProductLink
                     key={item.id}
+                    id={item.id}
                     style={{ textDecoration: 'none' }}
                     to="/product">
                     <ImgWrapper>

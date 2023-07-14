@@ -15,6 +15,7 @@ function Fashion() {
         const response = await fetch('https://fakestoreapi.com/products');
         const jsonData = await response.json();
         setData(jsonData);
+        console.log(data);
       } catch (error) {
         console.log('Error fetching data:', error);
       }
@@ -42,8 +43,9 @@ function Fashion() {
                 item.category === "men's clothing" && (
                   <ProductLink
                     key={item.id}
+                    id={item.id}
                     style={{ textDecoration: 'none' }}
-                    to="/product">
+                    to={`/product/${item.id}`}>
                     <ImgWrapper>
                       <ItemImg src={item.image}></ItemImg>
                     </ImgWrapper>
@@ -64,6 +66,7 @@ function Fashion() {
                 {items.map((item) => (
                   <ProductLink
                     key={item.id}
+                    productId={item.id}
                     style={{ textDecoration: 'none' }}
                     to="/product">
                     <ImgWrapper>
