@@ -29,9 +29,7 @@ function Fashion({ data, setData }) {
   return (
     <ThemeProvider theme={theme}>
       <NavigationBar />
-
       <MenuNav menu={'패션'} />
-
       {data.map((item) => {
         return item.category === "men's clothing" ? (
           <Products key={item.id} item={item} />

@@ -46,6 +46,7 @@ const NavBar = styled.div`
   left: 0;
   z-index: 10;
   background-color: ${({ theme }) => theme.lightColor.navBack};
+  box-shadow: 0 6px 10px -4px ${({ theme }) => theme.lightColor.input};
 `;
 
 const NavMenu = styled.div`

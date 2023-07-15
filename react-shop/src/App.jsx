@@ -6,7 +6,7 @@ import Fashion from './pages/Fashion';
 import Accessory from './pages/Accessory';
 import Digital from './pages/Digital';
 import Cart from './pages/Cart';
-import Product from './pages/Detail';
+import Product from './pages/Product';
 
 function App() {
   const [data, setData] = useState([]);

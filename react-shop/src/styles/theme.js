@@ -5,6 +5,7 @@ const lightColor = {
   commonText: '#1F2937',
   input: '#D1D5DB',
   itemDescBack: '#F3F4F6',
+  badge: '#37CDBE',
 };
 
 const darkColor = {
@@ -14,6 +15,7 @@ const darkColor = {
   commonText: '#A6ADBB',
   input: '#4B5563',
   itemDescBack: '#374151',
+  badge: '#37CDBE',
 };
 
 const theme = {
