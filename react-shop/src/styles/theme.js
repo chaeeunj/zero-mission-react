@@ -6,6 +6,7 @@ const lightColor = {
   input: '#D1D5DB',
   itemDescBack: '#F3F4F6',
   badge: '#37CDBE',
+  footer: '#F2F2F2',
 };
 
 const darkColor = {
@@ -16,6 +17,7 @@ const darkColor = {
   input: '#4B5563',
   itemDescBack: '#374151',
   badge: '#37CDBE',
+  footer: '#242933',
 };
 
 const theme = {

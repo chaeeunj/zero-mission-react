@@ -6,6 +6,7 @@ import theme from '../styles/theme';
 import NavigationBar from '../components/NavigationBar';
 import Products from '../components/Products';
 import MenuNav from '../components/MenuNav';
+import Footer from '../components/Footer';
 
 function Digital({ data, setData }) {
   useEffect(() => {
@@ -39,6 +40,7 @@ function Digital({ data, setData }) {
           <Products key={item.id} item={item} />
         ) : null;
       })}
+      <Footer />
     </ThemeProvider>
   );
 }

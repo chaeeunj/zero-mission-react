@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
 import Rating from '@mui/material/Rating';
 
-import NavigationBar from '../components/NavigationBar';
-// import StarRating from '../components/StarRating';
+import Button from '../components/Button';
 
 function Detail() {
   const { id } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,11 +22,20 @@ function Detail() {
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
+
+  const handleAddToCart = () => {};
+
+  const handleGoToCart = () => {
+    navigate('/cart');
+  };
+
+  if (!product) {
+    return null; // 데이터가 로드되지 않은 경우 null 반환하거나 로딩 스피너 등을 표시할 수 있음
+  }
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationBar />
       <Wrapper>
         <MenuNav>
           패션 <StyledSpan>&gt;</StyledSpan> {product.title}
@@ -37,17 +46,29 @@ function Detail() {
             <Title>{product.title}</Title>
             <NewBadge>NEW</NewBadge>
             <Desc>{product.description}</Desc>
-            <div>
-              <Rating
+            <CustomerRating>
+              <StarRating
                 name="read-only"
-                value={Math.floor(product.rating.rate * 2) / 2}
+                value={product.rating.rate}
                 readOnly
               />
               <RatingInfo>
                 {product.rating.rate} / {product.rating.count} 참여
               </RatingInfo>
-            </div>
+            </CustomerRating>
             <Price>${Math.ceil(product.price)}</Price>
+            <Button
+              role={'장바구니에 담기'}
+              onClick={handleAddToCart}
+              bgColor={'#570df8'}
+              color={'#fff'}
+            />
+            <Button
+              role={'장바구니로 이동'}
+              onClick={handleGoToCart}
+              bgColor={'#fff'}
+              color={'#1F2937'}
+            />
           </ProductDescBox>
         </DetailWrapper>
       </Wrapper>
@@ -70,7 +91,7 @@ const MenuNav = styled.div`
 `;
 
 const StyledSpan = styled.span`
-  color: ${({ theme }) => theme.lightColor.commonText};
+  color: ${({ theme }) => theme.lightColor.input};
 `;
 
 const DetailWrapper = styled.div`
@@ -113,6 +134,16 @@ const NewBadge = styled.span`
 const Desc = styled.p`
   font-size: 16px;
   color: ${({ theme }) => theme.lightColor.commonText};
+`;
+
+const CustomerRating = styled.div`
+  display: flex;
+  margin-top: 12px;
+`;
+
+const StarRating = styled(Rating)`
+  width: 120px;
+  height: 24px;
 `;
 
 const RatingInfo = styled.div`

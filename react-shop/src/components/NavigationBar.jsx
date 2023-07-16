@@ -57,7 +57,7 @@ const NavMenu = styled.div`
 
 const ShopLink = styled(Link)`
   color: ${({ theme }) => theme.lightColor.navText};
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   cursor: pointer;
   margin-left: 90px;
@@ -65,7 +65,7 @@ const ShopLink = styled(Link)`
 
 const MenuLink = styled(Link)`
   color: ${({ theme }) => theme.lightColor.navText};
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   text-align: center;
   cursor: pointer;
@@ -73,9 +73,9 @@ const MenuLink = styled(Link)`
 
   &:hover {
     background-color: ${({ theme }) => theme.lightColor.navHover};
-    width: 70px;
-    height: 35px;
+    padding: 8px 12px;
     border-radius: 10px;
+    text-align: center;
   }
 `;
 

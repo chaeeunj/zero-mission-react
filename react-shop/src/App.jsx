@@ -12,7 +12,7 @@ function App() {
   const [data, setData] = useState([]);
 
   return (
-    <div>
+    <div style={{ height: '100vh' }}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

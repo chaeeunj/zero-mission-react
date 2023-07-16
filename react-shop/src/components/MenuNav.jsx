@@ -32,7 +32,7 @@ const Menu = styled.div`
 `;
 
 const StyledSpan = styled.span`
-  color: ${({ theme }) => theme.lightColor.commonText};
+  color: ${({ theme }) => theme.lightColor.input};
 `;
 
 const Title = styled.h1`
