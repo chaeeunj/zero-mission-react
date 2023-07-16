@@ -25,7 +25,6 @@ function Accessory({ data, setData }) {
     <>
       <NavigationBar />
       <MenuNav menu={'액세서리'} />
-
       {data.map((item) => {
         return item.category === 'jewelery' ? (
           <Products key={item.id} item={item} />

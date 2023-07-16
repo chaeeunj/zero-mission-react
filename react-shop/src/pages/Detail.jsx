@@ -9,6 +9,7 @@ import Button from '../components/Button';
 function Detail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [menu, setMenu] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +25,21 @@ function Detail() {
     fetchData();
   }, [id]);
 
+  useEffect(() => {
+    if (product) {
+      if (
+        product.category === "men's clothing" ||
+        product.category === "women's clothing"
+      ) {
+        setMenu('패션');
+      } else if (product.category === 'jewelery') {
+        setMenu('액세서리');
+      } else {
+        setMenu('디지털');
+      }
+    }
+  }, [product]);
+
   const handleAddToCart = () => {};
 
   const handleGoToCart = () => {
@@ -38,7 +54,7 @@ function Detail() {
     <ThemeProvider theme={theme}>
       <Wrapper>
         <MenuNav>
-          패션 <StyledSpan>&gt;</StyledSpan> {product.title}
+          {menu} <StyledSpan>&gt;</StyledSpan> {product.title}
         </MenuNav>
         <DetailWrapper key={product.id} id={product.id}>
           <ProductImg src={product.image} alt="productImg"></ProductImg>
