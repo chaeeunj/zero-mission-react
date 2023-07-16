@@ -7,23 +7,21 @@ function Products({ item }) {
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
-        <ProductWrapper>
-          {item && (
-            <AllProducts>
-              <ProductLink
-                style={{ textDecoration: 'none' }}
-                to={`/product/${item.id}`}>
-                <ImgWrapper>
-                  <ItemImg src={item.image}></ItemImg>
-                </ImgWrapper>
-                <DescWrapper>
-                  <ItemTitle>{item.title}</ItemTitle>
-                  <ItemPrice>${item.price}</ItemPrice>
-                </DescWrapper>
-              </ProductLink>
-            </AllProducts>
-          )}
-        </ProductWrapper>
+        {item && (
+          <AllProducts>
+            <ProductLink
+              style={{ textDecoration: 'none' }}
+              to={`/product/${item.id}`}>
+              <ImgWrapper>
+                <ItemImg src={item.image}></ItemImg>
+              </ImgWrapper>
+              <DescWrapper>
+                <ItemTitle>{item.title}</ItemTitle>
+                <ItemPrice>${item.price}</ItemPrice>
+              </DescWrapper>
+            </ProductLink>
+          </AllProducts>
+        )}
       </Wrapper>
     </ThemeProvider>
   );
@@ -36,19 +34,9 @@ Products.propTypes = {
 export default Products;
 
 const Wrapper = styled.div`
-  position: relative;
-  top: 85px;
   width: 100vw;
+  margin-top: 100px;
   margin-left: 75px;
-`;
-
-const ProductWrapper = styled.div`
-  /* width: 100vw; */
-  margin-top: 10px;
-  font-weight: 600;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 const AllProducts = styled.div`
@@ -56,12 +44,11 @@ const AllProducts = styled.div`
   display: flex;
   float: left;
   margin-top: 20px;
-  /* width: 1330px; */
 `;
 
 const ProductLink = styled(Link)`
   width: 315px;
-  height: 480px;
+  height: 490px;
   border: 1px solid ${({ theme }) => theme.lightColor.input};
   border-radius: 10px;
   margin-right: 20px;
@@ -81,7 +68,8 @@ const ItemImg = styled.img`
 `;
 
 const DescWrapper = styled.div`
-  height: 160px;
+  height: 106px;
+  padding: 32px;
   background-color: ${({ theme }) => theme.lightColor.itemDescBack};
   border-radius: 0 0 10px 10px;
 `;
@@ -89,12 +77,13 @@ const DescWrapper = styled.div`
 const ItemTitle = styled.div`
   color: ${({ theme }) => theme.lightColor.commonText};
   font-size: 16px;
-  padding: 35px 35px 0 35px;
+  font-weight: 600;
+  margin-bottom: 20px;
 `;
 
 const ItemPrice = styled.div`
   color: ${({ theme }) => theme.lightColor.commonText};
   font-size: 16px;
   font-weight: 500;
-  padding: 20px 35px 0 35px;
+  /* margin-bottom: 20px; */
 `;

@@ -23,12 +23,13 @@ export default MenuNav;
 
 const Wrapper = styled.div`
   position: relative;
-  top: 120px;
+  top: 90px;
 `;
 
 const Menu = styled.div`
   color: ${({ theme }) => theme.lightColor.navText};
   font-size: 14px;
+  margin-left: 70px;
 `;
 
 const StyledSpan = styled.span`
