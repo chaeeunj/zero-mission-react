@@ -35,8 +35,7 @@ export default Products;
 
 const Wrapper = styled.div`
   width: 100vw;
-  margin-top: 100px;
-  margin-left: 75px;
+  margin-left: 85px;
 `;
 
 const AllProducts = styled.div`

@@ -24,6 +24,7 @@ export default MenuNav;
 const Wrapper = styled.div`
   position: relative;
   top: 90px;
+  margin-bottom: 100px;
 `;
 
 const Menu = styled.div`
