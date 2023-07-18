@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
 import Rating from '@mui/material/Rating';
 
 import Button from '../components/Button';
 
-function Detail() {
+function Detail({ cart, setCart }) {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [menu, setMenu] = useState('');
+  const [count, setCount] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,7 +42,37 @@ function Detail() {
     }
   }, [product]);
 
-  const handleAddToCart = () => {};
+  const setQuantity = (id, quantity) => {
+    const productPrice = Math.ceil(product.price);
+    const found = cart.filter((item) => item.id === id)[0];
+    const idx = cart.indexOf(found);
+    const cartItem = {
+      id: product.id,
+      image: product.image,
+      title: product.title,
+      price: productPrice,
+      quantity: quantity,
+    };
+    setCart([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
+  };
+
+  const handleAddToCart = () => {
+    const productPrice = Math.ceil(product.price);
+    const updatedCount = count + 1;
+
+    const cartItem = {
+      id: product.id,
+      image: product.image,
+      title: product.title,
+      price: productPrice,
+      quantity: updatedCount,
+    };
+    setCount(updatedCount);
+    const found = cart.find((item) => item.id === cartItem.id);
+
+    if (found) setQuantity(cartItem.id, found.quantity + updatedCount);
+    else setCart([...cart, cartItem]);
+  };
 
   const handleGoToCart = () => {
     navigate('/cart');
@@ -91,6 +123,11 @@ function Detail() {
     </ThemeProvider>
   );
 }
+
+Detail.propTypes = {
+  cart: PropTypes.array.isRequired,
+  setCart: PropTypes.func.isRequired,
+};
 
 export default Detail;
 

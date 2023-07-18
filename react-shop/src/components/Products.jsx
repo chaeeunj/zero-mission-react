@@ -6,8 +6,8 @@ import theme from '../styles/theme';
 function Products({ item }) {
   return (
     <ThemeProvider theme={theme}>
-      <Wrapper>
-        {item && (
+      {item && (
+        <Wrapper>
           <AllProducts>
             <ProductLink
               style={{ textDecoration: 'none' }}
@@ -17,12 +17,12 @@ function Products({ item }) {
               </ImgWrapper>
               <DescWrapper>
                 <ItemTitle>{item.title}</ItemTitle>
-                <ItemPrice>${item.price}</ItemPrice>
+                <ItemPrice>${Math.ceil(item.price)}</ItemPrice>
               </DescWrapper>
             </ProductLink>
           </AllProducts>
-        )}
-      </Wrapper>
+        </Wrapper>
+      )}
     </ThemeProvider>
   );
 }

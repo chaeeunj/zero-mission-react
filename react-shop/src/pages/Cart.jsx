@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
@@ -9,6 +9,41 @@ import FullCart from '../components/cart/FullCart';
 import TotalPrice from '../components/cart/TotalPrice';
 
 function Cart({ cart, setCart }) {
+  // const [price, setPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    const calculateTotalPrice = () => {
+      let total = 0;
+      cart.forEach((item) => {
+        total += item.price * item.quantity;
+      });
+      return total;
+    };
+
+    const total = calculateTotalPrice();
+    setTotalPrice(total);
+  }, [cart]);
+
+  const handleQuantity = (type, id, quantity) => {
+    let updatedCart = [];
+
+    if (type === 'minus' && quantity === 0) {
+      // Remove item from cart
+      updatedCart = cart.filter((item) => item.id !== id);
+    } else {
+      // Update quantity of the item
+      updatedCart = cart.map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity };
+        }
+        return item;
+      });
+    }
+
+    setCart(updatedCart);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
@@ -19,11 +54,20 @@ function Cart({ cart, setCart }) {
           <EmptyCart />
         ) : (
           cart.map((cart) => {
-            return <FullCart key={cart.id} cart={cart} />;
+            return (
+              <FullCart
+                key={cart.id}
+                cart={cart}
+                handleQuantity={handleQuantity}
+              />
+            );
           })
         )}
-
-        {cart.length === 0 ? '' : <TotalPrice />}
+        <TotalPrice
+          cart={cart}
+          totalPrice={totalPrice}
+          setTotalPrice={setTotalPrice}
+        />
       </Wrapper>
     </ThemeProvider>
   );

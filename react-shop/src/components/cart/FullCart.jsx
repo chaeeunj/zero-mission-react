@@ -6,47 +6,32 @@ import theme from '../../styles/theme';
 
 import Button from '../Button';
 
-function FullCart({ cart }) {
+function FullCart({ cart, handleQuantity }) {
   console.log(cart);
-  const [count, setCount] = useState(1);
-
-  const handleChangeCount = (operator) => {
-    if (count >= 1) {
-      if (operator === 'plus') {
-        setCount(count + 1);
-      } else {
-        setCount(count - 1);
-      }
-    }
-  };
+  const { id, image, title, price, quantity } = cart;
 
   return (
     <ThemeProvider theme={theme}>
       <CartProduct>
         <ProductWrapper>
           <ProductInfo>
-            <ImgLink to={`/product/`}>
-              <ProductImg src={''}></ProductImg>
+            <ImgLink to={`/product/${id}`}>
+              <ProductImg src={image}></ProductImg>
             </ImgLink>
             <ProductCard>
-              <TitleLink to={`/product/`}>T-shirt</TitleLink>
-              <Price>$400</Price>
+              <TitleLink to={`/product/${id}`}>{title}</TitleLink>
+              <Price>${price * quantity}</Price>
               <ProductCount>
                 <Button
                   role={'-'}
-                  onClick={() => handleChangeCount('minus')}
+                  onClick={() => handleQuantity('minus', id, quantity - 1)}
                   bgColor={'#570df8'}
                   color={'#fff'}
                 />
-                <Button
-                  role={count}
-                  onClick={() => handleChangeCount('')}
-                  bgColor={theme.lightColor.navBack}
-                  color={theme.lightColor.commonText}
-                />
+                <Count>{quantity}</Count>
                 <Button
                   role={'+'}
-                  onClick={() => handleChangeCount('plus')}
+                  onClick={() => handleQuantity('plus', id, quantity + 1)}
                   bgColor={'#570df8'}
                   color={'#fff'}
                 />
@@ -61,6 +46,7 @@ function FullCart({ cart }) {
 
 FullCart.propTypes = {
   cart: PropTypes.array.isRequired,
+  handleQuantity: PropTypes.func.isRequired,
 };
 
 export default FullCart;
@@ -87,8 +73,8 @@ const ImgLink = styled(Link)`
 `;
 
 const ProductImg = styled.img`
-  /* width: 192px;
-  height: 192px; */
+  width: 192px;
+  height: 192px;
   padding: 16px;
 `;
 const ProductCard = styled.div`
@@ -109,3 +95,11 @@ const Price = styled.div`
 `;
 
 const ProductCount = styled.div``;
+
+const Count = styled.span`
+  font-size: 14px;
+  color: ${({ theme }) => theme.lightColor.commonText};
+  background-color: ${({ theme }) => theme.lightColor.navBack};
+  padding: 0 16px 0 9px;
+  margin-left: 0;
+`;

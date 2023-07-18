@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
 
 import SearchBar from './SearchBar';
 
-function NavigationBar() {
+function NavigationBar({ cart }) {
   return (
     <ThemeProvider theme={theme}>
       <NavBar>
@@ -28,13 +29,21 @@ function NavigationBar() {
             <CartLink style={{ textDecoration: 'none' }} to="/cart">
               <img src="/cart.png" alt="cart" />
             </CartLink>
-            <CartCount>0</CartCount>
+            {cart.length >= 1 ? (
+              <CartCount>{cart.length}</CartCount>
+            ) : (
+              <CartCount>0</CartCount>
+            )}
           </CartWrapper>
         </NavMenu>
       </NavBar>
     </ThemeProvider>
   );
 }
+
+NavigationBar.propTypes = {
+  cart: PropTypes.array.isRequired,
+};
 
 export default NavigationBar;
 
