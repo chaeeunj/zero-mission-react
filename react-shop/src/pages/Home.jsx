@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
 
-import NavigationBar from '../components/NavigationBar';
 import Carousel from '../components/Carousel';
 import Products from '../components/Products';
-import Footer from '../components/Footer';
 
 function Home({ data, setData }) {
   useEffect(() => {
@@ -30,7 +28,6 @@ function Home({ data, setData }) {
   return (
     <ThemeProvider theme={theme}>
       <Wrapper>
-        <NavigationBar />
         <Carousel />
         <FashionWrapper>
           <Title>패션</Title>
@@ -54,7 +51,6 @@ function Home({ data, setData }) {
             return item && <Products key={item.id} item={item} />;
           })}
         </DigitalWrapper>
-        <Footer />
       </Wrapper>
     </ThemeProvider>
   );

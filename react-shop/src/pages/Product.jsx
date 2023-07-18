@@ -1,15 +1,17 @@
-import NavigationBar from '../components/NavigationBar';
+import PropTypes from 'prop-types';
 import Detail from './Detail';
-import Footer from '../components/Footer';
 
-function Product() {
+function Product({ cart, setCart }) {
   return (
     <div>
-      <NavigationBar />
-      <Detail />
-      <Footer />
+      <Detail cart={cart} setCart={setCart} />
     </div>
   );
 }
+
+Product.propTypes = {
+  cart: PropTypes.array.isRequired,
+  setCart: PropTypes.func.isRequired,
+};
 
 export default Product;

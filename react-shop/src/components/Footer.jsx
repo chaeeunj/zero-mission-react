@@ -136,9 +136,9 @@ function Footer() {
           </PaymentSvg>
         </Payment>
         <WebSite>
-          <WebsiteImg src="../public/facebook.png"></WebsiteImg>
-          <WebsiteImg src="../public/instagram.png"></WebsiteImg>
-          <WebsiteImg src="../public/github.png"></WebsiteImg>
+          <WebsiteImg src="/facebook.png"></WebsiteImg>
+          <WebsiteImg src="/instagram.png"></WebsiteImg>
+          <WebsiteImg src="/github.png"></WebsiteImg>
         </WebSite>
         <Copyright>Copyright © 2023 Zero Base</Copyright>
       </Wrapper>
@@ -157,7 +157,6 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 40px;
   margin-top: 100px;
-  margin-bottom: 0;
 `;
 
 const Developer = styled(Link)`

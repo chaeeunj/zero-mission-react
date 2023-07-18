@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import NavigationBar from '../components/NavigationBar';
 import Products from '../components/Products';
 import MenuNav from '../components/MenuNav';
-import Footer from '../components/Footer';
 
 function Accessory({ data, setData }) {
   useEffect(() => {
@@ -23,14 +21,12 @@ function Accessory({ data, setData }) {
 
   return (
     <>
-      <NavigationBar />
       <MenuNav menu={'액세서리'} />
       {data.map((item) => {
         return item.category === 'jewelery' ? (
           <Products key={item.id} item={item} />
         ) : null;
       })}
-      <Footer />
     </>
   );
 }
