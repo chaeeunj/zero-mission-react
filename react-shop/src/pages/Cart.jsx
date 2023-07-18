@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
 
-// import Button from '../components/Button';
 import EmptyCart from '../components/cart/EmptyCart';
 import FullCart from '../components/cart/FullCart';
 import TotalPrice from '../components/cart/TotalPrice';
 
 function Cart({ cart, setCart }) {
-  // const [price, setPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
