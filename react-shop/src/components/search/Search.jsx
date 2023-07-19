@@ -5,7 +5,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import theme from '../../styles/theme';
 
 import SearchBar from './SearchBar';
-import SearchResult from './Searchresult';
+import SearchResult from './SearchResult';
 
 function Search({ data, setData }) {
   const [results, setResults] = useState([]);
