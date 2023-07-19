@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import styled, { ThemeProvider } from 'styled-components';
 import theme from '../styles/theme';
 
-import SearchBar from './SearchBar';
+import Search from './search/Search';
 
-function NavigationBar({ cart }) {
+function NavigationBar({ data, setData, cart }) {
   return (
     <ThemeProvider theme={theme}>
       <NavBar>
@@ -24,7 +24,7 @@ function NavigationBar({ cart }) {
           </MenuLink>
 
           <SunImg src="/sun.png" alt="light" />
-          <SearchBar />
+          <Search data={data} setData={setData} />
           <CartWrapper>
             <CartLink style={{ textDecoration: 'none' }} to="/cart">
               <img src="/cart.png" alt="cart" />
@@ -42,6 +42,8 @@ function NavigationBar({ cart }) {
 }
 
 NavigationBar.propTypes = {
+  data: PropTypes.array.isRequired,
+  setData: PropTypes.func.isRequired,
   cart: PropTypes.array.isRequired,
 };
 

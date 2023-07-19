@@ -17,7 +17,7 @@ function App() {
   return (
     <div style={{ height: '100vh' }}>
       <Router>
-        <NavigationBar cart={cart} />
+        <NavigationBar data={data} setData={setData} cart={cart} />
         <Routes>
           <Route path="/" element={<Home data={data} setData={setData} />} />
           <Route
